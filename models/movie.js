@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-const { validLink } = require('../utils/constants');
-const { validImageLink } = require('../utils/constants');
+const validator = require('validator');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -28,28 +27,25 @@ const movieSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    default: '',
     required: true,
     validate: {
-      validator: (image) => validImageLink.test(image),
+      validator: (image) => validator.isURL(image),
       message: 'Некорректный формат ссылки на картинку фильма',
     },
   },
   trailerLink: {
     type: String,
-    default: '',
     required: true,
     validate: {
-      validator: (link) => validLink.test(link),
+      validator: (link) => validator.isURL(link),
       message: 'Некорректный формат ссылки на трейлер фильма',
     },
   },
   thumbnail: {
     type: String,
-    default: '',
     required: true,
     validate: {
-      validator: (image) => validImageLink.test(image),
+      validator: (link) => validator.isURL(link),
       message: 'Некорректный формат ссылки на мини-картинку фильма',
     },
   },
