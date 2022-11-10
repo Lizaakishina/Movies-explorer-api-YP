@@ -14,33 +14,7 @@ module.exports.getMovies = (req, res, next) => {
 };
 
 module.exports.createMovie = (req, res, next) => {
-  const {
-    country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailer,
-    nameRU,
-    nameEN,
-    thumbnail,
-    movieId,
-  } = req.body;
-  Movies.create({
-    country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailerLink: trailer,
-    nameRU,
-    nameEN,
-    thumbnail,
-    movieId,
-    owner: req.user._id,
-  })
+  Movies.create({ ...req.body, owner: req.user._id })
     .then((movie) => res.send(movie))
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -58,7 +32,8 @@ module.exports.deleteMovie = (req, res, next) => {
       const movieOwner = String(movie.owner);
       if (user === movieOwner) {
         Movies.findByIdAndRemove(req.params.movieId)
-          .then((deletedMovie) => res.send(deletedMovie));
+          .then((deletedMovie) => res.send(deletedMovie))
+          .catch(next);
       } else {
         next(new NotRightError(NOT_RIGHTS_MESSAGE));
       }

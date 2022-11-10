@@ -47,9 +47,7 @@ module.exports.getUser = (req, res, next) => {
   Users.findById(userId).orFail(new NotFoundError(NOT_FOUND_USER_ID_MESSAGE))
     .then((user) => res.send(user))
     .catch((err) => {
-      if (err.name === 'NotFound') {
-        next(err);
-      } else if (err.name === 'CastError') {
+      if (err.name === 'CastError') {
         next(new IncorrectData(INCORRECT_DATA_MESSAGE));
       } else {
         next(err);
