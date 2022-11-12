@@ -8,6 +8,8 @@ const INCORRECT_DATA_MESSAGE = 'Некорректные данные';
 const LOGIN_ERROR_MESSAGE = 'Неверное имя пользователя или пароль';
 const NOT_REGISTERED_MESSAGE = 'Необходимо авторизироваться';
 const EXIST_EMAIL_MESSAGE = 'Пользователь с таким email уже существует';
+const INVALID_LINK = 'Ссылка не является валидной';
+const ENTER_EMAIL = 'Введите пожалуйста Email';
 
 module.exports = {
   SERVER_ERROR_CODE,
@@ -20,4 +22,6 @@ module.exports = {
   NOT_RIGHTS_MESSAGE,
   NOT_REGISTERED_MESSAGE,
   EXIST_EMAIL_MESSAGE,
+  INVALID_LINK,
+  ENTER_EMAIL,
 };
