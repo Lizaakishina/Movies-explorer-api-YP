@@ -30,12 +30,10 @@ module.exports.signUp = (req, res, next) => {
       email, name, password, _id: user._id,
     }))
     .catch((err) => {
-      if (err.name === 'ValidationError') {
+      if (err.code === 11000) {
         next(new ExistEmailError(EXIST_EMAIL_MESSAGE));
-      } else if (err.name === 'CastError') {
+      } else if (err.name === 'ValidationError') {
         next(new IncorrectData(INCORRECT_DATA_MESSAGE));
-      } else if (err.code === 11000) {
-        next(new ExistEmailError(EXIST_EMAIL_MESSAGE));
       } else {
         next(err);
       }
