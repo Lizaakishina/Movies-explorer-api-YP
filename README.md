@@ -2,6 +2,7 @@
 
 Адрес сервера: https://api.ak1s4.movies-explorer.nomoredomains.icu/
 
+Публичный IP: 84.252.131.87
 Ссылка на макет: https://disk.yandex.ru/d/LbLRVwp16E35bA
 
 ## Описание:
